@@ -1,31 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-class AppTest extends Component{
-  constructor(){
-    super();
-
-    this.state = {
-      sayHello: 'Hello World',
-    };
-
-    this.buttonChange = this.buttonChange.bind(this);
-  }
-
-  buttonChange(){
-    this.setState({sayHello: 'Good Bye!'})
-  }
-
-  render(){
-    return(
-      <div className="App"> 
-        <p>{this.state.sayHello}</p>
-        <button onClick={this.buttonChange}>Bye Bye!</button>
-      </div>
-    );
-  }
-}
-
 class App extends Component{
 
   constructor(){
@@ -72,7 +47,7 @@ class App extends Component{
           {
             Object.entries(this.state.currRates).map(([optionKey, optionValue])=>{
               return(
-                <option key={optionValue} value={optionValue} className={optionKey.toString()}>{optionKey.toString()}</option> 
+                <option key={optionKey} value={optionValue} className={optionKey.toString()}>{optionKey.toString()}</option> 
               )
                 
             })
