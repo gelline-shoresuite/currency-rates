@@ -8,12 +8,10 @@ class App extends Component{
 
     this.state = {
       currRates: [],
-      selectValue : 'None',
+      selectValue : 1,
       inputValue: 0,
     };
 
-    this.selectChange = this.selectChange.bind(this); //ALWAYS BIND THEM FUNCTIONS?
-    this.inputChange = this.inputChange.bind(this);
   }
 
   //The things inside the select Dropdown
@@ -29,21 +27,21 @@ class App extends Component{
     
   }
 
-  selectChange(event){
+  selectChange = (event) =>{
     this.setState({selectValue: event.target.value});
   }
 
-  inputChange(event){
+  inputChange = (event) =>{
     this.setState({inputValue: event.target.value});
   }
 
   render() {
     return (
       <div className="App"> 
-        EUR: <input type="number" onChange={this.inputChange} value={this.state.inputValue}/> to&nbsp;
+        EUR: <input type="number" onChange={this.inputChange} value={this.state.inputValue} min="0" max="99999999"/> to&nbsp;
         
         <select onChange={this.selectChange} value={this.state.selectValue}>
-          <option value='None'>Select Currency</option>
+          <option value='1'>Select Currency</option>
           {
             Object.entries(this.state.currRates).map(([optionKey, optionValue])=>{
               return(
@@ -53,8 +51,8 @@ class App extends Component{
             })
           }
         </select>
-
-        &nbsp; Converted: {this.state.selectValue * this.state.inputValue}
+        Converted: <input type="text" value={this.state.selectValue * this.state.inputValue} disabled/>
+        &nbsp; {this.state.selectValue * this.state.inputValue}
       </div>
     );
   }
