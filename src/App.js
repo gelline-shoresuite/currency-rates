@@ -49,19 +49,7 @@ class App extends Component{
     fetch(apiGet).then(results => results.json())
     .then(data => {
       console.log(data);
-      return data.rates;
-
-    }).then(theRates =>{
-      
-      console.log(theRates);
-      let optionOutput = Object.entries(theRates).map(([optionKey, optionValue])=>{
-        return(
-          <h1></h1>
-        )
-      })
-      console.log(optionOutput);
-      this.setState({currRates: optionOutput});
-
+      this.setState({currRates: data.rates})
     })
     
   }
@@ -81,7 +69,14 @@ class App extends Component{
         
         <select onChange={this.selectChange} value={this.state.selectValue}>
           <option value='None'>Select Currency</option>
-          {this.state.currRates}
+          {
+            Object.entries(this.state.currRates).map(([optionKey, optionValue])=>{
+              return(
+                <option key={optionValue} value={optionValue} className={optionKey.toString()}>{optionKey.toString()}</option> 
+              )
+                
+            })
+          }
         </select>
 
         &nbsp;{this.state.selectValue} multiply with {this.state.inputValue}
@@ -91,4 +86,4 @@ class App extends Component{
   }
 }
 
-export default AppTest;
+export default App;
