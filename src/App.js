@@ -79,8 +79,7 @@ class App extends Component{
           }
         </select>
 
-        &nbsp;{this.state.selectValue} multiply with {this.state.inputValue}
-        &nbsp; is equals to {this.state.selectValue * this.state.inputValue}
+        &nbsp; Converted: {this.state.selectValue * this.state.inputValue}
       </div>
     );
   }
