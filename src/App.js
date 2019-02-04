@@ -8,9 +8,12 @@ class App extends Component{
 
     this.state = {
       currRates: [],
+      value : 'Select',
     };
 
+    this.change = this.change.bind(this); //ALWAYS BIND THIS
   }
+
 
   componentDidMount(){
     const API_KEY="d69d63eccfc65d52d99f5200bbf3dbf4";
@@ -36,13 +39,19 @@ class App extends Component{
     
   }
 
+  change(event){
+    this.setState({value: event.target.value});
+  }
+
   render() {
     return (
-      <div className="App">
-        EUR: <input type="number"/>
-        <select>
+      <div className="App"> 
+        EUR: <input type="number"/> to&nbsp;
+        <select onChange={this.change} value={this.state.value}>
+          <option value='select'>Select Currency</option>
           {this.state.currRates}
         </select>
+        &nbsp;{this.state.value}
      
       </div>
     );
